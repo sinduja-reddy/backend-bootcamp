@@ -118,7 +118,7 @@ We are learning Linux because
 
 	<section data-markdown>
 	  <script type="text/template">
-### _Goals of the course_?
+### _Goals of the course?_
 --------------------------------------------------
 
 1. ...be comfortable with _Linux_
@@ -136,16 +136,178 @@ We are learning Linux because
 
 	<section data-markdown>
 	  <script type="text/template">
+### _Linux terminology_
+Operating systems are divided into `kernelspace` and `userspace`.
+Kernelspace is what the kernel controls, that basically hardware, the CPU,
+anything physical, your programs run in userspace and must ask the kernel
+with `system` calls for anything physical. Programs are also sometimes called
+binaries, processes or exectuables.
+
+You can imagine it:
+```
+---------------------------------------------
+|                                           |
+|  `userspace`, like `git`, `nano`, `node`. |
+|                                           |
+|           ------------------              |
+|          |                  |             |
+|          |   kernelspace    |             |
+|          |                  |             | 
+|          |                  |             |
+|           ------------------              |
+---------------------------------------------
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Linux Terminology cont..._
+The Linux source code, located [here](https://github.com/torvalds/linux), is 
+about 20 million lines of `C` code. Userland programs can be written in 
+any program. Binaries (remember its another name for programs) on Linux 
+are organized differently than on `Windows` or `OS X`. For example, on Windows
+programs end with `.exe`, but on Linux programs don't need to have that extension.
+Linux programs are organized in the
+[`ELF`](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) format.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Linux Terminology cont..._
+The combination of the kernel and userspace makes up a `GNU/Linux`
+distribution. Popular distributions include `Ubuntu`, `Debian`, 
+`Mint`, `Fedora`, `CentOS` and more.
+
+### _NOTE_
+```
+Sometimes you'll hear the terms upstream and downstream of projects.
+A downstream project is one that is built on top of another project, 
+the upstream project, so Ubuntu is downstream of Debian
+
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
 ### _Starting with the shell_
 -----------------------------
 
 The `shell` is the primary way we'll communicate with 
 the Operating System. Shell, terminal, bash, and command line 
 all basically mean the same thing in this course.
+The shell maintains some **state** 
+
+### _NOTE_
+```
+State is another name for data that changes, 
+when we change that data we say that we mutated some state
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system_
+Within the shell, we can move about the file system. You
+can imagine the file system like a tree:
+
+```
+                    -----
+                   |  /  |
+                    -----
+                  /       \ 
+             ------       ------
+            | home |     |  usr | 
+             ------       ------
+           /             /
+     --------        --------       
+    | coding |      | coding |
+     --------        --------
+```
+An important concept is called a **Path**, there are two
+kinds of paths **Absolute Paths** and **Relative Paths**
+
+Examples of Absolute path: /usr/home/coding
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system cont..._
+-----------------
+Examples of Absolute path: /usr/home/coding
+
+Example of Relative path: usr/coding
+
+Notice that an absolute path must always start from the beginning
+of the file sytem, at **/**
+
+With absolute paths, there can be no ambiguity about where the 
+file is on the file system, but with relative paths there an be 
+ambiguity.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system + bash_
+------------------------
+With `bash` running, we can navigate the file system.
+
+### _NOTE_
+Examples like
+```
+$ pwd
+```
+mean do it at the shell prompt, put in the command pwd.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system + bash cont..._
+--------------------------------
+In the shell there are some important commands that we'll use 
+over and over again.
+
+Note that `<some_path_here>` is not the thing you type, its a 
+placeholder for what you'll put in.
+
+**This changes your directory to another directory**
+```
+$ cd <some_path_here>
+```
+
+**This prints out the contents of the current directory**
+```
+$ ls
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system + bash cont..._
+--------------------------------
+**You can also give ls a path, can be absolute or relative**
+```
+$ ls /usr/include
+```
+** Find the directory of a file **
+```
+$ dirname <some_file>
+```
 
 
 	  </script>
 	</section>
+
 
 	<section data-markdown>
 	  <script type="text/template">
@@ -193,27 +355,15 @@ tense and describes what work is in the commit.
 	<section data-markdown>
 	  <!-- Example, show Turkish bank cert -->
 	  <script type="text/template">
-### _and the interesting things you find in apps..._
+### __
 ----------------------------------------------------
-
-Developers are human and human are usually a bit lazy
-
-People leave in their apps, both in the binary and in the `IPA`
-all kinds of goodies like `AWS` passwords, entire `.git` repos 
-and even `TLS` certs which can be converted into `ssh` keys...
 
 	  </script>
 	</section>
+
 	<section data-markdown>
 	  <script type="text/template">
-### _Wrapping up_
-----------------
 
-Shameless plug: I'm trying to establish a hackerspace in Yerevan, 
-see the presentation at http://hyegar.com/hackerspace
-a place of learning all kinds of skills.
-
-# Any questions?
 	  </script>
 	</section>
 
@@ -228,6 +378,7 @@ a place of learning all kinds of skills.
      // Full list of configuration options available at:
      // https://github.com/hakimel/reveal.js#configuration
      Reveal.initialize({
+       slideNumber:true,
        controls: true,
        progress: true,
        history: true,
