@@ -437,29 +437,120 @@ while (i < 4) {
 
 	<section data-markdown>
 	  <script type="text/template">
-### _git_
----------
+### _JavaScript: Arrays, Sets, Maps, Objects_
+---------------------------------
+Now we need to talk about containers. A container is something that contains other
+things! Let's say we want to talk about all the students in the classroom, how
+can we use one variable to talk about all those students? The easiest way is to
+use something an `array`.
+
+```
+let students = ['Միքայել', 'Gohar', 'Владимир'];
+```
+`students` is an array and its size is three.
+You can make an array by using `[]`, for example
+```
+let emp = []
+```
+makes a variable `emp` which starts as an empty array.
 	  </script>
 	</section>
 
 	<section data-markdown>
 	  <script type="text/template">
-### _git_
----------
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------
+We can access elements in the arrays by indexing.
+
+```
+// Arrays start from a 0 index.
+//               0          1            2
+let students = ['Միքայել', 'Gohar', 'Владимир'];
+console.log(students[1]);
+```
+If you try to access an element out of bounds, out of the range of the
+array then you get `undefined` (A mistake in the language)
+```
+console.log(students[42]);
+```
+And that will print undefined to the terminal screen.
 	  </script>
 	</section>
 
 	<section data-markdown>
 	  <script type="text/template">
- ### _slide_
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------
+Objects in JavaScript are a way to keep keys and values. Think of a phonebook,
+we want to say someone's name is associated with a mobile number.
+
+```
+const friends = {Gevorg: '09-34231', Sammy: '08-23123'};
+console.log(friends.Gevorg);
+console.log(friends['Sammy']);
+```
+
+We make JavaScript objects with `{}` and pairs of keys, values.
+So `Gevorg` is a key and its value is `'09-34231'`. The size of our
+`friends` object is two.
+
 	  </script>
 	</section>
 
 	<section data-markdown>
 	  <script type="text/template">
-### __
-----------------------------------------------------
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------
+We can loop over arrays; using the old style for loop.
+```
+const students = ['Միքայել', 'Gohar', 'Владимир'];
+for (let i = 0; i < students.length; i++) {
+  console.log(students[i]);
+}
+```
+Notice that the `students` variable as a property called length. A property is
+anything that can be accessed with `.` of an identifier. I recommend that for that kind of
+logic you use the new style for loop.
+```
+const students = ['Միքայել', 'Gohar', 'Владимир'];
+// If we don't want to mutate s, then we use const, otherwise use let
+for (const s of students) {
+  console.log(s.toUpperCase());
+}
+```
+	  </script>
+	</section>
 
+  <section data-markdown>
+    <script type="text/template">
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------------
+if you need to make sure that you have a collection of only unique things, then
+you need to use a `Set`
+
+```
+// iterable will only have the elements 1 2 3
+const iterable = new Set([1, 1, 2, 2, 3, 3]);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------------------
+Another collection type is called `Map`. Maps are new in EcmaScript 6
+
+```
+const iterable = new Map([["a", 1], ["b", 2], ["c", 3]]);
+for (const [key, value] of iterable) {
+  console.log(value);
+}
+```
+
+Notice that there's a common theme, having an ability to go over
+one thing at a time of a collection. This is called `iterating` over
+a collection.
 	  </script>
 	</section>
 
