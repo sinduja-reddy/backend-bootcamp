@@ -303,11 +303,41 @@ $ ls /usr/include
 ```
 $ dirname <some_file>
 ```
-
-
+** The shell also can do commands out of turn, 
+   aka not left to right. This says to do `dirname` first, 
+   then give the result to ls
+**
+```
+$ ls $(dirname <some_file>)
+```
 	  </script>
 	</section>
 
+	<section data-markdown>
+	  <script type="text/template">
+### _making shell scripts_
+--------------------------
+We can also automate some of this shell coding.
+The shell also has a concept of `for loops`, `while loops`
+For example, imagine this file is called `printout.sh`
+
+```
+#!/bin/bash
+for i in $(seq 8); do 
+    mkdir week-${i}
+done
+```
+
+This script can be run like: `bash printout.sh` and it
+will make 8 directories.
+
+if you do:
+```
+$ chmod +x printout.sh
+```
+Then it will say that this 
+	  </script>
+	</section>
 
 	<section data-markdown>
 	  <script type="text/template">
