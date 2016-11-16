@@ -129,14 +129,11 @@ known as **EcmaScript**, there is an open spec, standard.
 	  <script type="text/template">
 ### _Engines_
 -------------
-
 An engine is another name for an interpreter, remember
-that JavaScript is interpreted, not compiled.
-
-The first JavaScript engine, written by Eich, was **SpiderMonkey**, it is
-implemented in **C++** and still used in **FireFox**
-
-Today there are quite a few JS engines,
+that JavaScript is interpreted, not compiled. The first JavaScript engine,
+written by Eich, was **SpiderMonkey**, it is
+implemented in **C++** and still used in **FireFox** Today there are
+quite a few JS engines,
 
 1. SpiderMonkey, used in FireFox
 2. Chakra, used in Edge
@@ -163,6 +160,13 @@ calls. Since then the project has taken off and now node is used by
 basically all startups and big name users like Groupon, IBM, LinkedIn,
 Microsoft, Netflix, PayPal, SAP, Walmart, Yahoo!, Cisco Systems and many more.
 
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _nodejs cont..._
+--------------------
 We are learning on the latest versions of node,
 which support the majority of ES6 (EcmaScript 6). You can play with the
 node repl at any time by starting it on the command line:
@@ -170,9 +174,15 @@ node repl at any time by starting it on the command line:
 ```
 $ node
 > var a = 10;
+undefined
 ```
+I encourage you to always test out ideas directly in the **node** repl, keep
+one terminal always running the **node** repl and another terminal for
+running JavaScript code from a file.
+
 	  </script>
 	</section>
+
 
 	<section data-markdown>
 	  <script type="text/template">
@@ -193,6 +203,13 @@ $ sudo dpkg -i atom-amd64.deb
 $ sudo npm install tern -g
 $ apm install react atom-ternjs
 ```
+
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _Installation notes cont..._
+---------------------------------
 Then you can make JavaScript programs by making a JavaScript file with `Atom`
 ```
 $ atom code.js
@@ -201,7 +218,6 @@ And run the code:
 ```
 $ node code.js
 ```
-
 	  </script>
 	</section>
 
@@ -226,10 +242,6 @@ var a = 123;
 // the type of name is String
 var name = 'Student';
 ```
-
-**NOTE** Every language also has `keywords`, these are words that you cannot use
-as identifiers, they are reserved for the language itself, examples: `if`, `for`,
-`var`, `function`, and more.
 	  </script>
 	</section>
 
@@ -237,18 +249,20 @@ as identifiers, they are reserved for the language itself, examples: `if`, `for`
 	  <script type="text/template">
 ### _JavaScript: variables cont..._
 -----------------------------------
+
+**NOTE** Every language also has `keywords`, these are words that you cannot use
+as identifiers, they are reserved for the language itself, examples: `if`, `for`,
+`var`, `function`, and more.
+
+
 Notice that we variables that we created started with `var`
 In ES6, EcmaScript 6, we have three ways of declaring variables.
-
-<br/>
 
 ```
 var a = 10;
 const b = 'hello';
 let g = true;
 ```
-
-<br/>
 
 What is the difference between the three?
 For that we need to talk about scope.
@@ -273,12 +287,6 @@ if (true) {
 // we can print anything to the terminal screen with console.log
 console.log(name);
 ```
-if we run this code:
-```
-$ node prog.js
-```
-Then we'll see that '123' is printed to the screen. Here we say that the conditional leaks
-scope, the variable `name` is escaping the scope.
 	  </script>
 	</section>
 
@@ -286,6 +294,12 @@ scope, the variable `name` is escaping the scope.
 	  <script type="text/template">
 ### _JavaScript: scope cont..._
 -------------------------------
+if we try running the previous code:
+```
+$ node prog.js
+```
+Then we'll see that '123' is printed to the screen. Here we say that
+the conditional leaks scope, the variable `name` is escaping the scope.
 Now if we try using `let`, then we'll see a difference:
 ```
 // imagine that this file is called prog.js
@@ -295,24 +309,6 @@ if (true) {
 // we can print anything to the terminal screen with console.log
 console.log(name);
 ```
-if we run this code:
-```
-$ node prog.js
-```
-Then we get an `exception`, a fatal error not handled by you
-```
-ReferenceError: name is not defined
-  at repl:1:13
-  at realRunInThisContextScript (vm.js:22:35)
-  at sigintHandlersWrap (vm.js:98:12)
-  at ContextifyScript.Script.runInThisContext (vm.js:24:12)
-  at REPLServer.defaultEval (repl.js:313:29)
-  at bound (domain.js:280:14)
-  at REPLServer.runBound [as eval] (domain.js:293:12)
-  at REPLServer.onLine (repl.js:513:10)
-  at emitOne (events.js:101:20)
-  at REPLServer.emit (events.js:188:7)
-```
 	  </script>
 	</section>
 
@@ -320,22 +316,46 @@ ReferenceError: name is not defined
 	  <script type="text/template">
 ### _JavaScript: scope cont..._
 -------------------------------
+if we try running the code that used `let`:
+```
+$ node prog.js
+```
+Then we get an `exception`, a fatal error not handled by you
+```
+ReferenceError: name is not defined
+at repl:1:13
+at realRunInThisContextScript (vm.js:22:35)
+at sigintHandlersWrap (vm.js:98:12)
+at ContextifyScript.Script.runInThisContext (vm.js:24:12)
+at REPLServer.defaultEval (repl.js:313:29)
+at bound (domain.js:280:14)
+at REPLServer.runBound [as eval] (domain.js:293:12)
+at REPLServer.onLine (repl.js:513:10)
+at emitOne (events.js:101:20)
+at REPLServer.emit (events.js:188:7)
+```
+
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: scope cont..._
+-------------------------------
+
 As programmers we ALWAYS need to read the error messages. The error message here
 tells you that the variable is not defined, that is, its not in scope. Why? Because
 we created the variable `name` with `let` and variables created with `let` are
 scoped to the `block` in which they are created. that is, you're only allowed
-to use that variable in the block that you created it in.
-
-Another example:
+to use that variable in the block that you created it in. Another example:
 ```
 // Silly for loop.
 for (var i = 0; i < 3; i++) {
-  console.log(i);
+console.log(i);
 }
 console.log(i)
 ```
 Here we make a variable `i` which we made only to do a loop three times
-but its still accessible, usable outside the `for` loop.
+but its still accessible, usable outside the loop.
 	  </script>
 	</section>
 
@@ -352,7 +372,15 @@ a = 'Հասմիկ';
 ```
 What happened? We changed, we **mutated**, the variable from the string 'Karen'
 to the new string 'Հասմիկ'. Also notice that we only have to use the `let` modifier
-the first time we make the variable. What if we don't want the variable to change?
+the first time we make the variable.
+	  </script>
+	</section>
+
+      <section data-markdown>
+	    <script type="text/template">
+### _JavaScript: scope cont..._
+-------------------------------
+What if we don't want the variable to change?
 For that we use `const`
 ```
 const a = 'Karen';
@@ -389,7 +417,6 @@ It is important to understand this fundamental concept of scope.
 Now we will talk about control structure, for the moment we will focus on
 synchronous code, that is code that executes top to down. That is node will read
 your code from the beginning to end and do everything that you tell it to do.
-
 We've seen two control structures already, the `if` conditional and the `for` loop.
 
 ```
@@ -556,6 +583,10 @@ a collection.
 
 	<section data-markdown>
 	  <script type="text/template">
+### _JavaScript: Functions_
+---------------------------
+Notice how we've been writing the code.
+
 
 	  </script>
 	</section>
