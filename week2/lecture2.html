@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+
+    <style> .shell { color:aqua; } </style>
+    <title>
+      Introduction to JavaScript
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet"
+    href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css"
+    id="theme">
+
+    <!-- href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/black.css" -->
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet"
+    href="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+# Introduction to JavaScript
+
+## Edgar Aroutiounian
+---------------------
+#### ISTC backend development course, Week-2, Fall 2016
+#### Yerevan, Armenia
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Programming Languages_
+--------------------------
+Programming languages generally fall into two categories,
+
+1. Compiled
+2. Interpreted
+
+Examples of (1) include **C**, **C++** and **OCaml**
+
+Examples of (2) include **Python**, **JavaScript** and **Ruby**
+
+(Java isn't exactly 1 or 2 as it compiles to Java bytecode and
+then its interpreted by the JVM)
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Short History of JavaScript_
+--------------------------------
+The first web browser was called
+[**Mosaic**](https://en.wikipedia.org/wiki/Mosaic_(web_browser)
+and the web itself was made so that physicists could share
+research papers. Research papers are static content,
+that is they don't change. Think about your HTML,
+it doesn't change.
+
+Then businesses discovered the web and immediately interactively was
+needed. People needed the websites to do things, to take credit cards,
+to animate things, to change the site; for that you need a real
+programming language.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Short History of JavaScript, cont..._
+-----------------------------------------
+There was a race to provide a programming language for the web.
+[Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich) at NetScape,
+now at Mozilla, rushed and in eight days created **JavaScript**.
+At the time NetScape was in competition with Microsoft and Microsoft
+also created a programming language for the web, it was
+called **VBScript**
+
+(Because JavaScript was made in only eight days, the
+language has some serious mistakes)
+
+One of the reasons why JavaScript won and VBScript died is the former
+is open-source and the latter was closed source. This is why JavaScript is also
+known as **EcmaScript**, there is an open spec, standard.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Engines_
+-------------
+
+An engine is another name for an interpreter, remember
+that JavaScript is interpreted, not compiled.
+
+The first JavaScript engine, written by Eich, was **SpiderMonkey**, it is
+implemented in **C++** and still used in **FireFox**
+
+Today there are quite a few JS engines,
+
+1. SpiderMonkey, used in FireFox
+2. Chakra, used in Edge
+3. JavaScriptCore, used in Safari, Mobile Safari,
+   ReactNative, original version of Chrome
+4. V8, created by Google, used in Chrome and the
+   foundation of **nodejs**
+
+...and more
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _nodejs_
+------------
+In this course we will be using **nodejs**, also just known as
+**node**.
+
+**node** was made in 2009 by an amazing programmer named Ryan Dahl,
+he basically took **V8**, added an event loop and some low-level IO
+calls. Since then the project has taken off and now node is used by
+basically all startups and big name users like
+
+Groupon, IBM, LinkedIn, Microsoft, Netflix, PayPal, SAP,
+Walmart, Yahoo!, Cisco Systems and many more.
+
+We are learning on the latest versions of node,
+which support the majority of ES6 (EcmaScript 6).
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript_
+-----------------
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Starting with the shell_
+-----------------------------
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system_
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system cont..._
+-----------------
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system + bash_
+------------------------
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system + bash cont..._
+--------------------------------
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _file system + bash cont..._
+--------------------------------
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _making shell scripts_
+--------------------------
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _git_
+---------
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _git_
+---------
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+ ### _slide_
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### __
+----------------------------------------------------
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+
+	  </script>
+	</section>
+
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:true,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>
