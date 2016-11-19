@@ -585,8 +585,203 @@ a collection.
 	  <script type="text/template">
 ### _JavaScript: Functions_
 ---------------------------
-Notice how we've been writing the code.
+Notice how we've been writing the code. We've been just writing
+it at the top level, at the file level. The code is not **reusable**.
 
+To fix that, we use **functions**. A function is a block of code that
+runs whenever we **call** the function. Functions are also values in
+JavaScript which means that we can put them in variables, in arrays.
+
+This is very powerful, some programming languages do not accept
+functions as values, for example Java.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Functions cont..._
+-----------------------------------
+
+Here is a simple example, we make a function, assign it to
+the constant variable `speaker` and then call the variable
+as a function. Note that variables inside a function are
+block scoped and will be deleted after the function returns,
+aka finishes.
+
+```
+const speaker = function() {
+  console.log('Hello world');
+};
+
+speaker();
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Functions cont..._
+-----------------------------------
+
+Functions can take data, we call that data the **parameters** of
+the function.
+
+```
+const speaker = function(param) {
+  console.log(param);
+};
+
+const s = 'Hello World';
+speaker(s);
+```
+The actual data given to the function is called its **arguments**.
+Here we called the variable speaker as a function with the
+argument `s` which was a variable for the data `'Hello World'`.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Functions cont..._
+-----------------------------------
+JavaScript functions are also **vararg** functions, that means that
+the functions can take as many arguments as given, even if the
+function has less parameters than the number of arguments given to it.
+
+```
+const speaker = function(param1, param2) {
+  console.log(param1);
+  console.log(param2);
+}
+// Not an error
+speaker('Foo', 'Bar', 'Baz', 'Catz');
+```
+All the arguments given to a function are stored in the variable
+`arguments`, it is only accessible inside a function scope.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Functions cont..._
+-----------------------------------
+Modern `ES6` lets you collect all the argument in a variable using `...`
+```
+const speaker = function(param1, param2, ...rest) {
+  // param1 is 'Foo', param2 is 'Bar'
+  // ...rest is an array with 'Baz', 'Catz'
+  console.log(param1);
+  console.log(param2);
+}
+speaker('Foo', 'Bar', 'Baz', 'Catz');
+```
+You can also provide default values
+```
+const speaker = function(param1, param2='World') {
+  console.log(param1 + param2);
+}
+speaker('Hello');
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+One of the hardest things to understand in JavaScript is
+the `this` variable, also known as the execution context.
+
+The `this` variable refers to the current `object`.
+
+```
+const obj = {
+  name: 'mari',
+  speak: function() {
+    console.log(this.name);
+  }
+};
+obj.speak();
+```
+The `this` variable is **dynamically** scoped, this means that its
+changes and doesn't use the data that you might think it does when
+you use it.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+The `this` variable is a part of the `EcmaScript` spec, that means
+that its part of the language but its implementation depends on what
+environment you're running your JavaScript code in. In the browser it
+refers to the `window` object, in `node` it refers to the global object.
+Open the `node` repl and type `this`, you'll see the global object printed.
+```
+$ node
+> this
+{ DTRACE_NET_SERVER_CONNECTION: [Function],
+  DTRACE_NET_STREAM_END: [Function],
+  DTRACE_HTTP_SERVER_REQUEST: [Function],
+  DTRACE_HTTP_SERVER_RESPONSE: [Function],
+  DTRACE_HTTP_CLIENT_REQUEST: [Function],
+  DTRACE_HTTP_CLIENT_RESPONSE: [Function],
+  global: [Circular],
+  process:
+  process {
+    title: 'node',
+```
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+JavaScript functions also have methods on them and the most
+important ones are `bind`, `call`, and `apply`.
+
+Another way to call a function
+```
+const f = function(g) { console.log(g)}
+// call just takes all the arguments you give it
+// and passes it to the function you are calling with .call
+f.call(null, 'hello')
+```
+You can also use `.apply` but for apply you need to give an
+array of arguments.
+```
+const f = function(g, h) { console.log(g + h)}
+f.apply(null, ['hello', 'world'])
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+Notice that for both `.call` and `.apply` we gave `null`.
+This means that we aren't going to provide a custom execution context,
+that the function will get to use whatever the `this` variable would
+have been. Now we will control the execution context:
+
+```
+const obj = {
+  name: 'mari',
+  speak: function() {
+    console.log(this.name);
+  }
+};
+const other_obj = { name:'nane' };
+obj.speak.call(other_obj);
+```
+Run this code and you'll see that `nane` is printed to the screen, not `mari`.
 
 	  </script>
 	</section>
