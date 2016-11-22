@@ -616,6 +616,8 @@ const speaker = function() {
 
 speaker();
 ```
+functions in JavaScript don't have to explicitly give back a value.
+If you don't have a `return` then the function gives back `undefined`
 	  </script>
 	</section>
 
@@ -786,6 +788,162 @@ Run this code and you'll see that `nane` is printed to the screen, not `mari`.
 	  </script>
 	</section>
 
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+Now we will talk about the most powerful and important
+method on functions, `.bind`. The big annoyance in
+JavaScript is that the execution context, the `this`
+variable that you end up using at runtime is not always
+the one you think will be used. This is because the `this`
+variable is `dynamically` scoped, not `lexically` scoped.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+To make sure that the our function uses the execution
+content that we want used we have to use `.bind`.
+
+`.bind` creates a new function that uses the execution context
+that you provide.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+
+```
+const obj = {
+  name:'aram'
+};
+// At the top level this refers to the global object
+this.name = 'gohar';
+const g = function(last_name) {
+// This is using ES6 string interpolation, aka the ${}
+  return `${this.name.toUpperCase()} ${last_name}`;
+}
+const f = g.bind(obj)
+console.log(f('baz'));
+```
+
+So `f` is a new function which is bound, we did a bind on g,
+to the JavaScript object `obj`.
+
+We can also do other wacky things with `.bind` like partial
+function application.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+Partial function application is like making a new function
+from another function but where some of the arguments are used
+with other values; its clearer with an example.
+
+```
+const obj = {
+  name:'aram'
+};
+// At the top level this refers to the global object
+this.name = 'gohar';
+const g = function(last_name, age) {
+  return `${this.name} ${last_name} ${age}`;
+}
+// The first argument must always be the new execution context
+// and the other arguments end up being the
+// arguments of the original function
+const f = g.bind(obj, 'baz');
+console.log(f(22));
+```
+See how `'baz'` ends up taking the argument value of `last_name`,
+this is positional.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Fat Arrows_
+----------------------------
+Now we're going to talk about a new feature of the
+JavaScript langauge, part of ES6, called `fat arrows`.
+
+Fat arrow functions are like regular functions except
+for some syntax differences and what execution context
+they use; they use the `this` variable from its lexical scope.
+
+We will be using them extensively, they are
+very fun.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Fat Arrows cont..._
+------------------------------------
+```
+const f = function(first, second) {
+  return first + second;
+}
+```
+
+is the same thing as:
+
+```
+const g = (first, second) => {
+  return first + second;
+}
+```
+Notice that we don't have to write `function`, less typing
+for us and we use `=>`
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Fat Arrows cont..._
+------------------------------------
+if your function takes only one parameter, then you don't
+need `()` for the parameter list.
+
+```
+const g = name => {
+  return `Hi: ${name.toUpperCase()}`;
+}
+```
+If the function is only one expression, then you don't need
+`{}` or even `return`
+```
+const g = name => `Hi: ${name.toUpperCase()}`;
+```
+This makes it super fun to use fat arrow functions with things like
+`.map` and `.filter`.
+
+```
+const evens = [1, 2, 3, 4, 5, 6, 7].filter(x => x % 2 === 0);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Objects again_
+-------------------------------
+
+
+	  </script>
+	</section>
 
       </div>
     </div>
