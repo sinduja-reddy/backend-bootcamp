@@ -940,10 +940,113 @@ const evens = [1, 2, 3, 4, 5, 6, 7].filter(x => x % 2 === 0);
 	  <script type="text/template">
 ### _JavaScript: Objects again_
 -------------------------------
+Notice that we made objects directly, JavaScript objects are
+the way to make new data types.
 
+The way to make new data types is to use....functions!
+
+Will this work? Try it.
+
+```
+const Person = function(first_name, last_name) {
+  this.f_name = first_name;
+  this.l_name = last_name;
+  this.speak = function() {
+    console.log(`My name is: ${this.f_name} ${this.l_name}`);
+  }
+}
+const armo = Person('famous', 'gampr');
+armo.speak();
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Objects again_
+-------------------------------
+The previous example didn't work because it matters **how** we
+call a function, do we call it as a **function** or
+like a **constructor**. In the previous example we
+called Person like a function and so the
+execution that it used ended up being the global object because the
+function wasn't bound to a particular `this` variable and so it kept
+looking up in the scope chain until it found one. You can think of
+this like doing `cd ..` in the shell, eventually
+you will hit `/` and you can't go any higher than `/`, similiarly
+the global `this` variable is always available. Check `this.f_name`,
+you'll see it has 'famous' attached to it, not a good thing.
+
+(fat arrows can't be called as constructors)
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Objects again_
+-------------------------------
+So we need to make sure that we get a **new** execution context
+when we call the function, we need to call the function as a constructor
+
+```
+const Person = function(first_name, last_name) {
+  // if this is now called as a constructor, that is
+  // if called used `new` then `this` is just an empty
+  // JavaScript object, its {} and here we are assigning
+  // new properties to it.
+  this.f_name = first_name;
+  this.l_name = last_name;
+  this.speak = function() {
+    console.log(`My name is: ${this.f_name} ${this.l_name}`);
+  }
+}
+const armo = new Person('famous', 'gampr');
+armo.speak();
+```
 
 	  </script>
 	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Classes_
+-------------------------------
+Notice that it wasn't an error to call the function
+as a constructor or as a function, `node` was okay
+with either, you only got an error when you tried to
+use a property that didn't exist.
+
+A convention emerged that functions with uppercase names
+were meant to be called as constructors.
+
+This was still error prone so ES6 introduced `classes`
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Classes cont..._
+---------------------------------
+
+```
+class person {
+  constructor(name, last_name) {
+    this.f_name = name;
+    this.last_name = last_name;
+  }
+  speak () {
+    console.log(`My name is : ${this.f_name} ${this.last_name});
+  }
+}
+const gor = new person('gor', 'gampr');
+gor.speak();
+```
+Notice, if we don't call person with `new` then we'll
+get an TypeError exception.
+
+	  </script>
+	</section>
+
 
       </div>
     </div>
